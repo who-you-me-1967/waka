@@ -1,0 +1,19 @@
+----------------
+source /opt/ros/humble/setup.bash
+ros2 pkg prefix ament_cmake_auto
+
+ls -l /opt/ros/humble/share/ament_cmake_auto/cmake/
+
+----------------
+apt update && apt install libpcl-dev ros-humble-pcl-conversions -y
+
+cd /mnt/work/livox/ros2_ws/src
+git clone https://github.com/Livox-SDK/livox_ros_driver2.git
+
+cd /mnt/work/livox/ros2_ws/src/livox_ros_driver2
+./build.sh ROS2
+
+cd /mnt/work/livox/ros2_ws/
+rm -rf build/ install/ log/
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install
